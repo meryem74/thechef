@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-4">
+        {% if restaurant.image_path %}
+        <img src="{{ url_for('static', filename=restaurant.image_path) }}" class="img-fluid rounded" alt="{{ restaurant.name }}">
+        {% else %}
+        <div class="bg-secondary d-flex align-items-center justify-content-center rounded" style="height: 250px;">
+            <i class="bi bi-building text-light" style="font-size: 3rem;"></i>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1>{{ restaurant.name }}</h1>
+        <p class="lead">{{ restaurant.description }}</p>
+        <p><i class="bi bi-geo-alt"></i> {{ restaurant.address }}</p>
+
+        {% if user and user.id == restaurant.owner_id %}
+        <div class="btn-group">
+            <a href="{{ url_for('edit_restaurant', id=restaurant.id) }}" class="btn btn-outline-primary">Düzenle</a>
+            <form method="POST" action="{{ url_for('delete_restaurant', id=restaurant.id) }}" onsubmit="return confirm('Restoranı silmek istediğinize emin misiniz?');">
+                <button type="submit" class="btn btn-outline-danger">Sil</button>
+            </form>
+            <a href="{{ url_for('add_menu_item', restaurant_id=restaurant.id) }}" class="btn btn-outline-success">Menü Ekle</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Menü</h2>
+        <div class="row">
+            {% for item in menu_items %}
+            <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                    {% if item.image_path %}
+                    <img src="{{ url_for('static', filename=item.image_path) }}" class="card-img-top menu-image" alt="{{ item.name }}">
+                    {% else %}
+                    <div class="menu-image bg-secondary d-flex align-items-center justify-content-center">
+                        <i class="bi bi-image text-light" style="font-size: 2rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.description }}</p>
+                        <p class="card-text fw-bold">{{ "%.2f"|format(item.price) }} TL</p>
+                    </div>
+                    <div class="card-footer">
+                        {% if user and user.id != restaurant.owner_id %}
+                        <form method="POST" action="{{ url_for('add_to_cart', menu_id=item.id) }}">
+                            <button type="submit" class="btn btn-success btn-sm">Sepete Ekle</button>
+                        </form>
+                        {% elif user and user.id == restaurant.owner_id %}
+                        <div class="btn-group btn-group-sm">
+                            <a href="{{ url_for('edit_menu_item', id=item.id) }}" class="btn btn-outline-primary">Düzenle</a>
+                            <form method="POST" action="{{ url_for('delete_menu_item', id=item.id) }}" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+                                <button type="submit" class="btn btn-outline-danger">Sil</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">Bu restoran için henüz menü eklenmemiş.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Yorumlar</h2>
+
+        {% if user and user.id != restaurant.owner_id %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Yorum Yap</h5>
+                <form method="POST" action="{{ url_for('add_review', restaurant_id=restaurant.id) }}">
+                    <div class="mb-2">
+                        <label class="form-label">Puan</label>
+                        <select name="rating" class="form-select" required>
+                            <option value="5">5 - Mükemmel</option>
+                            <option value="4">4 - Çok İyi</option>
+                            <option value="3">3 - İyi</option>
+                            <option value="2">2 - Orta</option>
+                            <option value="1">1 - Kötü</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Yorumunuz</label>
+                        <textarea name="content" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        {% for comment in comments %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h6 class="card-title">{{ comment.user.username }}</h6>
+                    <div class="rating">
+                        {% for i in range(comment.rating) %}
+                        <i class="bi bi-star-fill"></i>
+                        {% endfor %}
+                        {% for i in range(5 - comment.rating) %}
+                        <i class="bi bi-star"></i>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="card-text">{{ comment.content }}</p>
+                <small class="text-muted">{{ comment.created_at.strftime('%d.%m.%Y %H:%M') }}</small>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info">Henüz yorum yapılmamış.</div>
+        {% endfor %}
+
+        {% if comments %}
+        <a href="{{ url_for('reviews', restaurant_id=restaurant.id) }}" class="btn btn-outline-primary btn-sm mt-2">Tüm Yorumlar</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

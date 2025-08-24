@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}Menü Öğesi Düzenle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Menü Öğesi Düzenle</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('edit_menu_item', id=item.id) }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ürün Adı</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ item.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıklama</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required>{{ item.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Fiyat (TL)</label>
+                        <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ item.price }}" min="0" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Ürün Görseli</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        <div class="form-text">PNG, JPG, JPEG, GIF veya WEBP formatında (max 5MB)</div>
+                        {% if item.image_path %}
+                        <div class="mt-2">
+                            <img src="{{ url_for('static', filename=item.image_path) }}" class="img-thumbnail" style="max-height: 150px;">
+                        </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <a href="{{ url_for('restaurant_detail', id=item.restaurant_id) }}" class="btn btn-secondary">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

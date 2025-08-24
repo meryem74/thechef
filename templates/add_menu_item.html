@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}Menü Öğesi Ekle{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Yeni Menü Öğesi Ekle</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('add_menu_item', restaurant_id=restaurant_id) }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ürün Adı</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıklama</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Fiyat (TL)</label>
+                        <input type="number" step="0.01" class="form-control" id="price" name="price" min="0" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Ürün Görseli</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        <div class="form-text">PNG, JPG, JPEG, GIF veya WEBP formatında (max 5MB)</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <a href="{{ url_for('restaurant_detail', id=restaurant_id) }}" class="btn btn-secondary">İptal</a>
+                </form>
+            </div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}Sepetim{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Sepetim</h2>
+
+        {% if cart.items %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Fiyat</th>
+                        <th>Miktar</th>
+                        <th>Toplam</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart.items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ "%.2f"|format(item.price) }} TL</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('update_cart_quantity', menu_id=item.id) }}" class="d-flex">
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="50" class="form-control form-control-sm" style="width: 70px;">
+                                <button type="submit" class="btn btn-sm btn-outline-primary ms-1">Güncelle</button>
+                            </form>
+                        </td>
+                        <td>{{ "%.2f"|format(item.price * item.quantity) }} TL</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('remove_from_cart', menu_id=item.id) }}">
+                                <button type="submit" class="btn btn-sm btn-danger">Kaldır</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <form method="POST" action="{{ url_for('clear_cart') }}">
+                <button type="submit" class="btn btn-outline-danger">Sepeti Temizle</button>
+            </form>
+            <form method="POST" action="{{ url_for('checkout') }}">
+                <button type="submit" class="btn btn-success">Siparişi Tamamla</button>
+            </form>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            Sepetinizde hiç ürün bulunmamaktadır.
+        </div>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Alışverişe Devam Et</a>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Sipariş Özeti</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>Ara Toplam</th>
+                        <td>{{ "%.2f"|format(total) }} TL</td>
+                    </tr>
+                    <tr>
+                        <th>Kargo</th>
+                        <td>Ücretsiz</td>
+                    </tr>
+                    <tr class="fw-bold">
+                        <th>Toplam</th>
+                        <td>{{ "%.2f"|format(total) }} TL</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

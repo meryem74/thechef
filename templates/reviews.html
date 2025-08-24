@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Yorumlar{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2>Yorumlar</h2>
+
+        {% for comment in comments %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">{{ comment.user.username }}</h5>
+                    <div class="rating">
+                        {% for i in range(comment.rating) %}
+                        <i class="bi bi-star-fill"></i>
+                        {% endfor %}
+                        {% for i in range(5 - comment.rating) %}
+                        <i class="bi bi-star"></i>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="card-text">{{ comment.content }}</p>
+                <small class="text-muted">{{ comment.created_at.strftime('%d.%m.%Y %H:%M') }}</small>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info">Henüz yorum yapılmamış.</div>
+        {% endfor %}
+
+        <a href="javascript:history.back()" class="btn btn-secondary">Geri Dön</a>
+    </div>
+</div>
+{% endblock %}
