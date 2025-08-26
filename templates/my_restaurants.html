@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Restoranlarım{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Restoranlarım</h1>
+
+{% if restaurants %}
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <div class="col-md-4">
+            <div class="card">
+                {% if restaurant.image %}
+                <img src="{{ url_for('static', filename='uploads/' ~ restaurant.image) }}" class="card-img-top restaurant-image" alt="{{ restaurant.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text">{{ restaurant.description }}</p>
+                    <a href="{{ url_for('restaurant_detail', id=restaurant.id) }}" class="btn btn-primary">Görüntüle</a>
+
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        Henüz restoran eklemediniz.
+    </div>
+{% endif %}
+{% endblock %}
