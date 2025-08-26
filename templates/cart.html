@@ -45,14 +45,14 @@
 
     <h4 class="mt-3">Genel Toplam: {{ "%.2f"|format(total) }} TL</h4>
 
-    <div class="mt-3">
+    <div class="mt-3 d-flex flex-column gap-2">
         <form method="POST" action="{{ url_for('clear_cart') }}">
             <button type="submit" class="btn btn-warning">Sepeti Temizle</button>
         </form>
+
         {% if user %}
-            <form method="POST" action="{{ url_for('checkout') }}" class="mt-2">
-                <button type="submit" class="btn btn-success">Siparişi Onayla</button>
-            </form>
+            <!-- Ödeme sayfasına yönlendirme GET ile -->
+            <a href="{{ url_for('payment') }}" class="btn btn-success">Siparişi Onayla</a>
         {% else %}
             <div class="alert alert-info mt-2">Sipariş vermek için <a href="{{ url_for('login') }}">giriş yapın</a>.</div>
         {% endif %}
