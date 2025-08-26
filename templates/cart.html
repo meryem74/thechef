@@ -5,57 +5,62 @@
 {% block content %}
 <h1 class="mb-4">Sepetiniz</h1>
 
-{% if cart['items'] %}
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Ürün</th>
-            <th>Fiyat</th>
-            <th>Miktar</th>
-            <th>Toplam</th>
-            <th>İşlem</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart['items'] %}
-        <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ "%.2f"|format(item.price) }} TL</td>
-            <td>
-                <form method="POST" action="{{ url_for('update_cart_quantity', menu_id=item.id) }}" class="d-flex">
-                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="50" class="form-control form-control-sm me-2" style="width:70px;">
-                    <button type="submit" class="btn btn-sm btn-primary">Güncelle</button>
-                </form>
-            </td>
-            <td>{{ "%.2f"|format(item.price * item.quantity) }} TL</td>
-            <td>
-                <form method="POST" action="{{ url_for('remove_from_cart', menu_id=item.id) }}">
-                    <button type="submit" class="btn btn-sm btn-danger">Kaldır</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% if cart['restaurants'] %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Restoran</th>
+                <th>Ürün</th>
+                <th>Fiyat</th>
+                <th>Miktar</th>
+                <th>Toplam</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rid, items in cart['restaurants'].items() %}
+                {% set restaurant = restaurants.get(rid) %}
+                {% for item in items %}
+                    <tr>
+                        <td>{{ restaurant.name if restaurant else "Bilinmeyen Restoran" }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ "%.2f"|format(item.price) }} TL</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('update_cart_quantity', menu_id=item.id) }}" class="d-flex">
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="50" class="form-control form-control-sm me-2" style="width:70px;">
+                                <button type="submit" class="btn btn-sm btn-primary">Güncelle</button>
+                            </form>
+                        </td>
+                        <td>{{ "%.2f"|format(item.price * item.quantity) }} TL</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('remove_from_cart', menu_id=item.id) }}">
+                                <button type="submit" class="btn btn-sm btn-danger">Kaldır</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
 
-<h4>Toplam: {{ "%.2f"|format(total) }} TL</h4>
+    <h4 class="mt-3">Genel Toplam: {{ "%.2f"|format(total) }} TL</h4>
 
-<div class="mt-3">
-    <form method="POST" action="{{ url_for('clear_cart') }}">
-        <button type="submit" class="btn btn-warning">Sepeti Temizle</button>
-    </form>
-    {% if user %}
-    <form method="POST" action="{{ url_for('checkout') }}" class="mt-2">
-        <button type="submit" class="btn btn-success">Siparişi Onayla</button>
-    </form>
-    {% else %}
-    <div class="alert alert-info mt-2">Sipariş vermek için <a href="{{ url_for('login') }}">giriş yapın</a>.</div>
-    {% endif %}
-</div>
+    <div class="mt-3">
+        <form method="POST" action="{{ url_for('clear_cart') }}">
+            <button type="submit" class="btn btn-warning">Sepeti Temizle</button>
+        </form>
+        {% if user %}
+            <form method="POST" action="{{ url_for('checkout') }}" class="mt-2">
+                <button type="submit" class="btn btn-success">Siparişi Onayla</button>
+            </form>
+        {% else %}
+            <div class="alert alert-info mt-2">Sipariş vermek için <a href="{{ url_for('login') }}">giriş yapın</a>.</div>
+        {% endif %}
+    </div>
 
 {% else %}
-<div class="alert alert-info">Sepetiniz boş.</div>
-<a href="{{ url_for('index') }}" class="btn btn-primary">Restoranları Gör</a>
+    <div class="alert alert-info">Sepetiniz boş.</div>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Restoranları Gör</a>
 {% endif %}
 
 {% endblock %}
