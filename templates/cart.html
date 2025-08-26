@@ -46,13 +46,16 @@
     <h4 class="mt-3">Genel Toplam: {{ "%.2f"|format(total) }} TL</h4>
 
     <div class="mt-3 d-flex flex-column gap-2">
+        <!-- Sepeti Temizle Butonu -->
         <form method="POST" action="{{ url_for('clear_cart') }}">
             <button type="submit" class="btn btn-warning">Sepeti Temizle</button>
         </form>
 
         {% if user %}
-            <!-- Ödeme sayfasına yönlendirme GET ile -->
-            <a href="{{ url_for('payment') }}" class="btn btn-success">Siparişi Onayla</a>
+            <!-- Ödeme sayfasına yönlendirme form ile, Sepeti Temizle ile aynı stil -->
+            <form method="GET" action="{{ url_for('payment') }}">
+                <button type="submit" class="btn btn-success">Siparişi Onayla</button>
+            </form>
         {% else %}
             <div class="alert alert-info mt-2">Sipariş vermek için <a href="{{ url_for('login') }}">giriş yapın</a>.</div>
         {% endif %}
