@@ -423,6 +423,19 @@ def forbidden(_e):
 def not_found(_e):
     return render_template('errors/404.html'), 404
 
+#my restaurant
+@app.route('/my_restaurants')
+def my_restaurants():
+    if 'user_id' not in session:
+        flash("Önce giriş yapmalısınız.", "danger")
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+    # user_id yerine owner_id kullanıyoruz
+    restaurants = Restaurant.query.filter_by(owner_id=user_id).all()
+    return render_template('my_restaurants.html', restaurants=restaurants, user=current_user())
+
+
 # --------------------
 # CS50 için Çalıştır
 # --------------------
