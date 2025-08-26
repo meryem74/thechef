@@ -435,6 +435,49 @@ def my_restaurants():
     restaurants = Restaurant.query.filter_by(owner_id=user_id).all()
     return render_template('my_restaurants.html', restaurants=restaurants, user=current_user())
 
+# odeme 
+@app.route('/payment', methods=['GET', 'POST'])
+@login_required
+def payment():
+    _init_cart()
+    total = _cart_total()
+    if total == 0:
+        flash('Sepetiniz boş.', 'warning')
+        return redirect(url_for('cart'))
+
+    if request.method == 'POST':
+        # Kullanıcı ödeme bilgilerini doldurmuş gibi varsayıyoruz
+        flash('Ödeme başarılı! Siparişiniz alındı.', 'success')
+        
+        # Siparişi oluştur
+        restaurants = session['cart'].get('restaurants', {})
+        for rid, items in restaurants.items():  # rid string
+            total_price = sum(it['price'] * it['quantity'] for it in items)
+            new_order = Order(
+                customer_id=session['user_id'],
+                restaurant_id=int(rid),
+                total_price=total_price,
+                status='pending'
+            )
+            db.session.add(new_order)
+            db.session.commit()
+            for it in items:
+                db.session.add(OrderItem(
+                    order_id=new_order.id,
+                    menu_id=it['id'],
+                    quantity=it['quantity'],
+                    price=it['price']
+                ))
+            db.session.commit()
+
+        # Sepeti temizle
+        session['cart'] = {"restaurants": {}}
+        session.modified = True
+        return redirect(url_for('index'))
+
+    return render_template('payment.html', total=total, user=current_user())
+
+
 
 # --------------------
 # CS50 için Çalıştır
