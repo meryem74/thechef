@@ -4,29 +4,25 @@
 
 {% block content %}
 <div class="auth-page">
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center">Giriş Yap</h3>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-center">Giriş Yap</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('login') }}">
+                <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-posta</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ url_for('login') }}">
-                        <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">E-posta</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Şifre</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
-                    </form>
-                    <div class="text-center mt-3">
-                        Hesabınız yok mu? <a href="{{ url_for('register') }}">Kayıt olun</a>
-                    </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Şifre</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
+                <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+            </form>
+            <div class="text-center mt-3">
+                Hesabınız yok mu? <a href="{{ url_for('register') }}">Kayıt olun</a>
             </div>
         </div>
     </div>
