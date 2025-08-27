@@ -27,12 +27,15 @@
                 <i class="bi bi-building text-light" style="font-size: 3rem;"></i>
             </div>
             {% endif %}
-            <div class="card-body">
+             <div class="card-body">
                 <h5 class="card-title restaurant-name">{{ restaurant.name }}</h5>
                 <p class="card-text">{{ restaurant.description[:100] ~ ('...' if restaurant.description|length > 100 else '') }}</p>
                 <p><i class="bi bi-geo-alt"></i> {{ restaurant.address }}</p>
-                <a href="{{ url_for('restaurant_detail', id=restaurant.id) }}" class="btn btn-premium w-100">Detay</a>
-            </div>
+               <div class="text-center">
+    <a href="{{ url_for('restaurant_detail', id=restaurant.id) }}" class="btn btn-premium btn-detail">Restoranı incele</a>
+          </div>
+
+            </div>  
         </div>
     </div>
     {% else %}
