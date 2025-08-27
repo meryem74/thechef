@@ -1,171 +1,224 @@
+/* ======================
+   GENEL STİLLER
+====================== */
 body {
-            background: #f5eded; /* Açık pembe arka plan */
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    background: #f5eded;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        .container {
-            flex: 1;
-        }
+/* ======================
+   BUTONLAR
+====================== */
+.btn-detail {
+    font-size: 0.9rem;
+    padding: 6px 30px;
+    border-radius: 10px;
+    transition: 0.3s;
+    display: inline-block;
+}
 
-        .logo {
-            height: 40px;
-        }
+.btn-detail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.2);
+}
 
-        .brand-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #b80e0e; /* Koyu kırmızı */
-        }
+.btn-premium {
+    background: #e63946;
+    color: #fff !important;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    transition: 0.3s;
+    font-weight: 500;
+}
 
-        .brand-text .highlight {
-            color: #e63946; /* Parlak kırmızı */
-        }
+.btn-premium:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(183, 28, 28, 0.2);
+}
 
-        /* Navbar */
-        .premium-navbar {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+/* ======================
+   LOGO & BAŞLIK
+====================== */
+.logo {
+    height: 80px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
 
-        .btn-premium {
-            background: #e63946;
-            color: #fff !important;
-            border: none;
-            border-radius: 25px;
-            padding: 8px 20px;
-            transition: 0.3s;
-            font-weight: 500;
-        }
+.logo:hover {
+    transform: rotate(15deg);
+}
 
-        .btn-premium:hover {
-            background: #b71c1c;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(183, 28, 28, 0.2);
-        }
+.brand-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 2.9rem;
+    letter-spacing: 2px;
+    color: #e63946;
+}
 
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, rgba(228, 135, 143, 0.1) 0%, rgba(245, 209, 209, 0.3) 100%);
-            padding: 80px 20px;
-            text-align: center;
-            border-radius: 20px;
-            margin: 30px 0;
-        }
+.highlight {
+    color: #b80e0e;
+}
 
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #b80e0e;
-            margin-bottom: 20px;
-        }
+/* ======================
+   NAVBAR
+====================== */
+.premium-navbar {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-        .hero-subtitle {
-            font-style: italic;
-            color: #e63946;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
+/* ======================
+   HERO SECTION
+====================== */
+.hero-section {
+    background: linear-gradient(135deg, rgba(228, 135, 143, 0.1) 0%, rgba(245, 209, 209, 0.3) 100%);
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+}
 
-        /* Arama Kutusu */
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #b80e0e;
+    margin-bottom: 20px;
+}
 
-        .search-box {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto;
-        }
+.hero-title span {
+    color: #e63946;
+}
 
-        .search-input {
-            border-radius: 50px;
-            padding: 15px 25px 15px 50px;
-            border: 2px solid #e63946;
-            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.15);
-            font-size: 1rem;
-        }
+.hero-subtitle,
+.slogan {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #e63946;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+}
 
-        .search-input:focus {
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.25);
-        }
+.slogan::before,
+.slogan::after {
+    content: '"';
+    font-size: 1.8rem;
+    color: #e63946;
+    vertical-align: middle;
+    margin: 0 6px;
+}
 
-        .search-icon {
-            position: absolute;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            color: #e63946;
-            font-size: 1.2rem;
-        }
+/* ======================
+   ARAMA KUTUSU
+====================== */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-        /* Kartlar */
-        .premium-card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
+.search-box {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
 
-        .premium-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(230, 57, 70, 0.15);
-        }
+.search-input {
+    border-radius: 50px;
+    padding: 15px 25px 15px 50px;
+    border: 2px solid #e63946;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.15);
+    font-size: 1rem;
+}
 
-        .restaurant-image {
-            height: 200px;
-            object-fit: cover;
-        }
+.search-input:focus {
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.25);
+}
 
-        .card-title {
-            color: #000000;
-            font-weight: 600;
-        }
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: #e63946;
+    font-size: 1.2rem;
+}
 
-        .card-text {
-            color: #555;
-        }
+/* ======================
+   KARTLAR
+====================== */
+.premium-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
 
-        .btn-card {
-            background: #e63946;
-            color: white;
-            border-radius: 20px;
-            padding: 8px 20px;
-            transition: 0.3s;
-        }
+.premium-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(230, 57, 70, 0.15);
+}
 
-        .btn-card:hover {
-            background: #b71c1c;
-            color: white;
-        }
+.restaurant-image {
+    height: 200px;
+    object-fit: cover;
+}
 
-        /* Footer */
-        .premium-footer {
-            background: #fff;
-            color: #444;
-            padding: 25px 0;
-            border-top: 1px solid #ffe6e6;
-            margin-top: auto;
-        }
+.card-title {
+    color: #000;
+    font-weight: 600;
+}
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .brand-text {
-                font-size: 1.5rem;
-            }
-            
-            .btn-premium {
-                padding: 6px 15px;
-                font-size: 0.9rem;
-                margin: 5px 0;
-            }
-        }
+.card-text {
+    color: #555;
+}
+
+/* ======================
+   FOOTER
+====================== */
+.premium-footer {
+    background: #fff;
+    color: #444;
+    padding: 25px 0;
+    border-top: 1px solid #ffe6e6;
+    margin-top: auto;
+}
+
+/* ======================
+   RESPONSIVE
+====================== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .logo {
+        height: 40px;
+        max-width: 100px;
+    }
+    
+    .brand-text {
+        font-size: 1.8rem;
+    }
+    
+    .btn-premium, .btn-detail {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+        margin: 5px 0;
+    }
+}
