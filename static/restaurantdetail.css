@@ -9,6 +9,7 @@
 
 /* ===== RESTORAN BAŞLIK ===== */
 .restaurant-detail-page h1 {
+    font-family: 'Playfair Display', serif;
     font-size: 2.4rem;
     font-weight: 700;
     color: #c0392b; /* koyu kırmızı */
@@ -48,7 +49,7 @@
 /* Kart genel tasarım */
 .restaurant-detail-page .card {
     border: none;
-    border-radius: 18px;
+    border-radius: 5px;
     overflow: hidden;
     background: #fff;
     box-shadow: 0 6px 20px rgba(255, 107, 129, 0.15);
@@ -146,34 +147,62 @@
 }
 
 
+/* ===== DÜZENLE BUTONU ===== */
 .restaurant-detail-page .btn-outline-primary {
     border-radius: 10px;
     font-weight: 500;
-    border-color: #ff6b81;
-    color: #fff;          /* burayı değiştiriyoruz */
-    background-color: #ff6b81; /* buton arka planını da pembe yapıyoruz */
+    border-color: #f85f76;
+    background-color: #f45a71; /* normal pembe arka plan */
+    color: #fff;               /* yazı beyaz */
+    padding: 8px 16px;         /* buton boyutu */
+    font-size: 0.95rem;
+    margin-right: 8px;         /* diğer butonla arası boşluk */
+    transition: all 0.3s ease;
 }
 
-/* Hover durumu: biraz koyulaştır */
 .restaurant-detail-page .btn-outline-primary:hover {
-    background-color: #e74c3c; /* daha koyu kırmızı */
-    color: #fff;                /* yazı beyaz kalır */
+    background-color: #d73030; /* hover koyu kırmızı */
+    color: #fff;
+    transform: translateY(-2px); /* hafif yukarı kayma efekti */
 }
 
-/* Sil butonu normal durumda */
+/* ===== SİL BUTONU ===== */
 .restaurant-detail-page .btn-outline-danger {
     border-radius: 10px;
     font-weight: 500;
-    border-color: #e74c3c;   /* kırmızı çerçeve */
-    background-color: #e74c3c; /* arka plan kırmızı */
-    color: #fff;              /* yazı beyaz */
+    border-color: #f06666;
+    background-color: #f35f6e; /* normal kırmızı arka plan */
+    color: #fff;               /* yazı beyaz */
+    padding: 8px 16px;         /* buton boyutu */
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
 
-/* Hover durumu */
 .restaurant-detail-page .btn-outline-danger:hover {
-    background-color: #c0392b; /* daha koyu kırmızı */
-    color: #fff;               /* yazı beyaz kalır */
+    background-color: #c72536; /* hover daha koyu kırmızı */
+    color: #fff;
+    transform: translateY(-2px); /* hafif yukarı kayma efekti */
 }
+
+/* ===== MENÜ EKLE BUTONU ===== */
+.restaurant-detail-page .btn-outline-success {
+    border-radius: 10px;
+    font-weight: 500;
+    border-color: #ea6c7d;             /* yeşil çerçeve */
+    background-color: #f06d78;         /* normal yeşil arka plan */
+    color: #fff;                        /* yazı beyaz */
+    padding: 8px 16px;                  /* buton boyutu */
+    font-size: 0.95rem;
+    margin-left: 8px;                   /* Sil ve Düzenle butonlarından boşluk */
+    transition: all 0.3s ease;
+}
+
+.restaurant-detail-page .btn-outline-success:hover {
+    background-color: #d3253c;          /* hover koyu yeşil */
+    color: #fff;
+    transform: translateY(-2px);        /* hafif yukarı kayma efekti */
+}
+
 
 
 /* ALERT */
@@ -259,3 +288,5 @@
 .restaurant-detail-page .menu-info .btn:hover {
     background: linear-gradient(135deg, #e74c3c, #c0392b);
 }    
+
+
