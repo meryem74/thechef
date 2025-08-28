@@ -1,0 +1,204 @@
+/* ======================
+   RESTORAN DETAY SAYFASI - KIRMIZI/PEMBE TEMA
+====================== */
+
+.restaurant-detail-page {
+    font-family: 'Poppins', sans-serif;
+    color: #2c2c2c;
+}
+
+/* ===== RESTORAN BAŞLIK ===== */
+.restaurant-detail-page h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #c0392b; /* koyu kırmızı */
+    margin-bottom: 0.8rem;
+}
+
+.restaurant-detail-page .lead {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+}
+
+.restaurant-detail-page p i {
+    color: #e74c3c;
+}
+
+/* Restoran görseli */
+.restaurant-detail-page img {
+    border-radius: 15px;
+    object-fit: cover;
+    max-height: 280px;
+    width: 100%;
+    box-shadow: 0 6px 18px rgba(192, 57, 43, 0.25);
+}
+
+/* ===== MENÜ ===== */
+.restaurant-detail-page h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #ff6b81;
+    display: inline-block;
+    padding-bottom: 4px;
+    color: #c0392b;
+}
+
+.restaurant-detail-page .card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(255, 107, 129, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.restaurant-detail-page .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(255, 107, 129, 0.25);
+}
+
+/* Menü görseli */
+.restaurant-detail-page .card-img-top,
+.restaurant-detail-page .menu-image {
+    width: 100%;
+    height: auto;         /* resim orantılı şekilde gösterilir */
+    max-height: 350px;    /* çok büyük olursa sınır koyar */
+    object-fit: cover;  /* kırpma yok, resim tamamen görünür */
+    background: #fff;     /* arka plan beyaz kalır */
+}
+
+/* Menü adı */
+.restaurant-detail-page .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #c0392b;
+}
+
+/* Menü açıklama */
+.restaurant-detail-page .card-text {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Menü fiyat */
+.restaurant-detail-page .fw-bold {
+    color: #e74c3c;
+    font-size: 1.2rem;
+}
+
+/* Sepete ekle butonu */
+.restaurant-detail-page .btn-success {
+    background: linear-gradient(135deg, #ff6b81, #e74c3c);
+    border: none;
+    border-radius: 12px;
+    padding: 6px 14px;
+    font-weight: 500;
+}
+
+.restaurant-detail-page .btn-success:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* ===== YORUMLAR ===== */
+.restaurant-detail-page .card-body .rating i {
+    color: #ff4757;
+    margin-left: 1px;
+}
+
+.restaurant-detail-page .card-body small {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Yorum yap kartı */
+.restaurant-detail-page .card-title {
+    font-weight: 600;
+    color: #c0392b;
+}
+
+.restaurant-detail-page form textarea {
+    resize: none;
+    border-radius: 10px;
+    border: 1px solid #f8c7cc;
+    padding: 10px;
+    background: #fff8f8;
+}
+
+.restaurant-detail-page form select {
+    border-radius: 8px;
+    padding: 6px;
+    border: 1px solid #f8c7cc;
+    background: #fff8f8;
+}
+
+/* Yorum gönder butonu */
+.restaurant-detail-page .btn-primary {
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff758c, #e74c3c);
+    border: none;
+    font-weight: 500;
+}
+
+.restaurant-detail-page .btn-primary:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* Tüm yorumlar butonu */
+.restaurant-detail-page .btn-outline-primary {
+    border-radius: 10px;
+    font-weight: 500;
+    border-color: #ff6b81;
+    color: #ff6b81;
+}
+
+.restaurant-detail-page .btn-outline-primary:hover {
+    background: #ff6b81;
+    color: #fff;
+}
+
+/* ===== ALERT (bilgi kutuları) ===== */
+.restaurant-detail-page .alert-info {
+    border-radius: 12px;
+    background: #ffe9ec;
+    border: 1px solid #ffccd5;
+    color: #b33939;
+}
+
+
+/* ======================
+   RESTORAN DETAY – MENÜ KARTLARI
+====================== */
+
+.menu-image {
+    width: 100%;
+    height: 200px;         /* sabit yükseklik */
+    object-fit: cover;     /* boşluk kalmaz, resim doldurur */
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+/* Kart tasarımı */
+.card.h-100 {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card.h-100:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Kart başlığı */
+.card-title {
+    font-weight: 600;
+    color: #b30047; /* kırmızı-pembe tonu */
+}
+
+/* Fiyat */
+.card-text.fw-bold {
+    color: #e60073;
+    font-size: 1.1rem;
+}
