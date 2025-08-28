@@ -34,7 +34,7 @@
     box-shadow: 0 6px 18px rgba(192, 57, 43, 0.25);
 }
 
-/* ===== MENÜ ===== */
+/* ===== MENÜ BAŞLIKLARI ===== */
 .restaurant-detail-page h2 {
     font-size: 1.7rem;
     font-weight: 600;
@@ -45,6 +45,7 @@
     color: #c0392b;
 }
 
+/* Kart genel tasarım */
 .restaurant-detail-page .card {
     border: none;
     border-radius: 18px;
@@ -63,13 +64,13 @@
 .restaurant-detail-page .card-img-top,
 .restaurant-detail-page .menu-image {
     width: 100%;
-    height: auto;         /* resim orantılı şekilde gösterilir */
-    max-height: 350px;    /* çok büyük olursa sınır koyar */
-    object-fit: cover;  /* kırpma yok, resim tamamen görünür */
-    background: #fff;     /* arka plan beyaz kalır */
+    height: auto;         
+    max-height: 350px;
+    object-fit: cover;
+    background: #fff;     
 }
 
-/* Menü adı */
+/* Menü başlığı */
 .restaurant-detail-page .card-title {
     font-size: 1.2rem;
     font-weight: 600;
@@ -133,7 +134,6 @@
     background: #fff8f8;
 }
 
-/* Yorum gönder butonu */
 .restaurant-detail-page .btn-primary {
     border-radius: 10px;
     background: linear-gradient(135deg, #ff758c, #e74c3c);
@@ -145,20 +145,38 @@
     background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-/* Tüm yorumlar butonu */
+
 .restaurant-detail-page .btn-outline-primary {
     border-radius: 10px;
     font-weight: 500;
     border-color: #ff6b81;
-    color: #ff6b81;
+    color: #fff;          /* burayı değiştiriyoruz */
+    background-color: #ff6b81; /* buton arka planını da pembe yapıyoruz */
 }
 
+/* Hover durumu: biraz koyulaştır */
 .restaurant-detail-page .btn-outline-primary:hover {
-    background: #ff6b81;
-    color: #fff;
+    background-color: #e74c3c; /* daha koyu kırmızı */
+    color: #fff;                /* yazı beyaz kalır */
 }
 
-/* ===== ALERT (bilgi kutuları) ===== */
+/* Sil butonu normal durumda */
+.restaurant-detail-page .btn-outline-danger {
+    border-radius: 10px;
+    font-weight: 500;
+    border-color: #e74c3c;   /* kırmızı çerçeve */
+    background-color: #e74c3c; /* arka plan kırmızı */
+    color: #fff;              /* yazı beyaz */
+}
+
+/* Hover durumu */
+.restaurant-detail-page .btn-outline-danger:hover {
+    background-color: #c0392b; /* daha koyu kırmızı */
+    color: #fff;               /* yazı beyaz kalır */
+}
+
+
+/* ALERT */
 .restaurant-detail-page .alert-info {
     border-radius: 12px;
     background: #ffe9ec;
@@ -167,38 +185,77 @@
 }
 
 
+
 /* ======================
-   RESTORAN DETAY – MENÜ KARTLARI
+   MENÜ KARTLARI – KOMPAKT GÜNCELLEME
 ====================== */
 
-.menu-image {
-    width: 100%;
-    height: 200px;         /* sabit yükseklik */
-    object-fit: cover;     /* boşluk kalmaz, resim doldurur */
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+.restaurant-detail-page .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-/* Kart tasarımı */
-.card.h-100 {
+.restaurant-detail-page .menu-item {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card.h-100:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+.restaurant-detail-page .menu-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
-/* Kart başlığı */
-.card-title {
-    font-weight: 600;
-    color: #b30047; /* kırmızı-pembe tonu */
+.restaurant-detail-page .menu-item img {
+    width: 100%;
+    height: 160px; /* daha kompakt */
+    object-fit: cover;
+    display: block;
 }
 
-/* Fiyat */
-.card-text.fw-bold {
-    color: #e60073;
+.restaurant-detail-page .menu-info {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.restaurant-detail-page .menu-info h5 {
     font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #b30047;
 }
+
+.restaurant-detail-page .menu-info p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.restaurant-detail-page .menu-info .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #e60073;
+    margin-bottom: 10px;
+}
+
+.restaurant-detail-page .menu-info .btn {
+    background: linear-gradient(135deg, #ff6b81, #e74c3c);
+    border: none;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.restaurant-detail-page .menu-info .btn:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}    
