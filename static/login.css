@@ -1,0 +1,169 @@
+/* ======================
+   GENEL STİLLER
+====================== */
+
+
+@keyframes fadeInBody {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================
+   KART KAPSAYICI
+====================== */
+/* Sadece login sayfası için */
+.login-page .auth-page {
+    
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.login-page .card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    max-width: 350px;
+    width: 40%;
+    min-height: 450px;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+@keyframes cardPop {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ======================
+   BAŞLIK
+====================== */
+.card-header h3 {
+    font-weight: 700;
+    color: #de455f;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #f4a7b3;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+
+/* ======================
+   FORM
+====================== */
+.form-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.login-page .form-control {
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    margin-top: 0.25rem;
+}
+
+.form-control:focus {
+    border-color: #d64f67;
+    box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.2);
+    outline: none;
+    transform: scale(1.02);
+}
+
+/* Input placeholder */
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: 400;
+    transition: all 0.3s;
+}
+
+/* ======================
+   BUTON
+====================== */
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b81, #ff4d6d);
+    border: none;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(45deg) translate(-100%, -100%);
+    transition: all 0.5s;
+}
+
+.btn-primary:hover::before {
+    transform: rotate(45deg) translate(0, 0);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #ff4d6d, #ff2a4a);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(255,77,109,0.35);
+}
+
+/* ======================
+   ALT METİN
+====================== */
+.text-center a {
+    color: #ff4d6d;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.text-center a:hover {
+    color: #ff2a4a;
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+/* ======================
+   ICON EKLEME (opsiyonel)
+====================== */
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #ff6b81;
+    pointer-events: none;
+}
+
+/* ======================
+   RESPONSIVE
+====================== */
+@media (max-width: 576px) {
+    .card {
+        padding: 2rem;
+        min-height: 450px; /* mobilde daha rahat */
+    }
+    .auth-page {
+        padding: 1rem; /* mobilde kenar boşluğu azalt */
+    }
+}
