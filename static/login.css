@@ -29,12 +29,13 @@
     border-radius: 20px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.1);
     padding: 2.5rem;
-    max-width: 350px;
-    width: 40%;
-    min-height: 450px;
+    max-width: 400px;  /* kutunun max genişliği */
+    width: 100%;       /* % yerine tam genişlik ver */
+    min-height: 500px;
     max-height: 90%;
     overflow-y: auto;
 }
+
 
 @keyframes cardPop {
     0% { transform: scale(0.9); opacity: 0; }
