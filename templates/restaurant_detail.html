@@ -3,6 +3,8 @@
 {% block title %}{{ restaurant.name }}{% endblock %}
 
 {% block content %}
+<div class="restaurant-detail-page">
+
 <div class="row mb-4">
     <div class="col-md-4">
         {% if restaurant.image_path %}
@@ -128,4 +130,5 @@
         {% endif %}
     </div>
 </div>
+</div> 
 {% endblock %}
