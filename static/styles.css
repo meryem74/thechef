@@ -46,7 +46,7 @@ body {
    LOGO & BAŞLIK
 ====================== */
 .logo {
-    height: 80px;
+    height: 70px;
     width: auto;
     max-width: 120px;
     object-fit: contain;
@@ -221,4 +221,10 @@ body {
         font-size: 0.9rem;
         margin: 5px 0;
     }
+
+
+
+
+
+
 }
