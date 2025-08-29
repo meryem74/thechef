@@ -1,0 +1,67 @@
+/* cart.css */
+
+/* =====================
+   TABLO TASARIMI
+===================== */
+.cart-page .table {
+    background: #fff !important;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.cart-page .table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 12px;
+}
+
+.cart-page .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+}
+
+/* Satır hover efekti */
+.cart-page .table tbody tr:hover {
+    background-color: #fef5f5;
+}
+
+/* =====================
+   BUTONLAR
+===================== */
+.cart-page .btn-primary {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.cart-page .btn-primary:hover {
+    background-color: #b52a36 !important;
+    border-color: #b52a36 !important;
+}
+
+/* Kaldır, Sepeti Temizle ve Siparişi Onayla aynı kırmızı */
+.cart-page .btn-danger,
+.cart-page .btn-warning,
+.cart-page .btn-success {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.cart-page .btn-danger:hover,
+.cart-page .btn-warning:hover,
+.cart-page .btn-success:hover {
+    background-color: #b52a36 !important;
+    border-color: #b52a36 !important;
+}
+.cart-page .table td:nth-child(4) {
+    width: 150px; /* istediğin genişliğe göre ayarlayabilirsin */
+}
