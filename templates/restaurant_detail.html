@@ -35,36 +35,33 @@
 <div class="row">
     <div class="col-md-8">
         <h2>Menü</h2>
-        <div class="row">
+        <div class="menu-grid">
             {% for item in menu_items %}
-            <div class="col-md-6 mb-3">
-                <div class="card h-100">
-                    {% if item.image_path %}
-                    <img src="{{ url_for('static', filename=item.image_path) }}" class="card-img-top menu-image" alt="{{ item.name }}">
-                    {% else %}
-                    <div class="menu-image bg-secondary d-flex align-items-center justify-content-center">
-                        <i class="bi bi-image text-light" style="font-size: 2rem;"></i>
+            <div class="menu-item">
+                {% if item.image_path %}
+                <img src="{{ url_for('static', filename=item.image_path) }}" alt="{{ item.name }}">
+                {% else %}
+                <div class="menu-image bg-secondary d-flex align-items-center justify-content-center">
+                    <i class="bi bi-image text-light" style="font-size: 2rem;"></i>
+                </div>
+                {% endif %}
+                <div class="menu-info">
+                    <h5>{{ item.name }}</h5>
+                    <p>{{ item.description }}</p>
+                    <div class="price">{{ "%.2f"|format(item.price) }} TL</div>
+
+                    {% if user and user.id != restaurant.owner_id %}
+                    <form method="POST" action="{{ url_for('add_to_cart', menu_id=item.id) }}">
+                        <button type="submit" class="btn btn-success btn-sm">Sepete Ekle</button>
+                    </form>
+                    {% elif user and user.id == restaurant.owner_id %}
+                    <div class="btn-group btn-group-sm">
+                        <a href="{{ url_for('edit_menu_item', id=item.id) }}" class="btn btn-outline-primary">Düzenle</a>
+                        <form method="POST" action="{{ url_for('delete_menu_item', id=item.id) }}" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+                            <button type="submit" class="btn btn-outline-danger">Sil</button>
+                        </form>
                     </div>
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.name }}</h5>
-                        <p class="card-text">{{ item.description }}</p>
-                        <p class="card-text fw-bold">{{ "%.2f"|format(item.price) }} TL</p>
-                    </div>
-                    <div class="card-footer">
-                        {% if user and user.id != restaurant.owner_id %}
-                        <form method="POST" action="{{ url_for('add_to_cart', menu_id=item.id) }}">
-                            <button type="submit" class="btn btn-success btn-sm">Sepete Ekle</button>
-                        </form>
-                        {% elif user and user.id == restaurant.owner_id %}
-                        <div class="btn-group btn-group-sm">
-                            <a href="{{ url_for('edit_menu_item', id=item.id) }}" class="btn btn-outline-primary">Düzenle</a>
-                            <form method="POST" action="{{ url_for('delete_menu_item', id=item.id) }}" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
-                                <button type="submit" class="btn btn-outline-danger">Sil</button>
-                            </form>
-                        </div>
-                        {% endif %}
-                    </div>
                 </div>
             </div>
             {% else %}
