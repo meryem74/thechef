@@ -3,26 +3,30 @@
 {% block title %}Ödeme{% endblock %}
 
 {% block content %}
-<h1>Ödeme</h1>
-<p>Toplam: <strong>{{ total }} ₺</strong></p>
+<div class="payment-page">
+    <div class="payment-form-container">
+        <h1>Kredi Kartı Bilgileri</h1>
+        <p>Toplam: <strong>{{ total }} ₺</strong></p>
 
-<form method="POST">
-    <div class="mb-3">
-        <label>Kart Sahibi</label>
-        <input type="text" name="card_name" class="form-control" placeholder="Kart üzerindeki isim" required>
+        <form method="POST">
+            <div class="mb-3">
+                <label>Kart Sahibi</label>
+                <input type="text" name="card_name" class="form-control" placeholder="Kart üzerindeki isim" required>
+            </div>
+            <div class="mb-3">
+                <label>Kart Numarası</label>
+                <input type="text" name="card_number" class="form-control" placeholder="1234 5678 9012 3456" required>
+            </div>
+            <div class="mb-3">
+                <label>Son Kullanma Tarihi</label>
+                <input type="text" name="expiry" class="form-control" placeholder="AA/YY" required>
+            </div>
+            <div class="mb-3">
+                <label>CVV</label>
+                <input type="text" name="cvv" class="form-control" placeholder="123" required>
+            </div>
+            <button type="submit" class="btn btn-success">Ödeme Yap</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <label>Kart Numarası</label>
-        <input type="text" name="card_number" class="form-control" placeholder="1234 5678 9012 3456" required>
-    </div>
-    <div class="mb-3">
-        <label>Son Kullanma Tarihi</label>
-        <input type="text" name="expiry" class="form-control" placeholder="AA/YY" required>
-    </div>
-    <div class="mb-3">
-        <label>CVV</label>
-        <input type="text" name="cvv" class="form-control" placeholder="123" required>
-    </div>
-    <button type="submit" class="btn btn-success">Ödeme Yap</button>
-</form>
+</div>
 {% endblock %}
