@@ -3,6 +3,7 @@
 {% block title %}Sepet{% endblock %}
 
 {% block content %}
+<div class="cart-page">
 <h1 class="mb-4">Sepetiniz</h1>
 
 {% if cart['restaurants'] %}
@@ -28,7 +29,7 @@
                         <td>
                             <form method="POST" action="{{ url_for('update_cart_quantity', menu_id=item.id) }}" class="d-flex">
                                 <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="50" class="form-control form-control-sm me-2" style="width:70px;">
-                                <button type="submit" class="btn btn-sm btn-primary">Güncelle</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Güncelle</button>
                             </form>
                         </td>
                         <td>{{ "%.2f"|format(item.price * item.quantity) }} TL</td>
@@ -65,5 +66,5 @@
     <div class="alert alert-info">Sepetiniz boş.</div>
     <a href="{{ url_for('index') }}" class="btn btn-primary">Restoranları Gör</a>
 {% endif %}
-
+</div>
 {% endblock %}
