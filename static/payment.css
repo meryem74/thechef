@@ -1,0 +1,86 @@
+/* payment.css */
+
+/* Sayfa genel stil */
+.payment-page {
+    font-family: 'Poppins', sans-serif;
+    color: #2c2c2c;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+}
+
+/* Form kapsayıcı */
+.payment-form-container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px; /* Formun genişliği */
+}
+
+/* Başlık */
+
+.payment-form-container h1 {
+    
+    color: #080201;
+    font-size: 1.7rem;      /* Biraz daha büyük yaptık */
+    font-weight: 300;        /* En kalın */
+    margin-bottom: 25px;
+    text-align: center;
+   
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15); /* Hafif gölge efekti */
+}
+
+
+/* Etiketler */
+.payment-form-container label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input alanları */
+.payment-form-container .form-control {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.payment-form-container .form-control:focus {
+    border-color: #c0392b;
+    box-shadow: 0 0 5px rgba(192, 57, 43, 0.3);
+    outline: none;
+}
+
+/* Ödeme butonu */
+.payment-form-container .btn-success {
+    background-color: #d83422 !important; /* Kırmızı */
+    border-color: #d23827 !important;
+    color: #fff !important;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.payment-form-container .btn-success:hover {
+    background-color: #a83227 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(192, 57, 43, 0.4);
+}
+
+/* Toplam tutar */
+.payment-form-container p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}    
