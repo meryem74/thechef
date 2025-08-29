@@ -105,21 +105,7 @@
     margin-top: 1rem;
 }
 
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255,255,255,0.2);
-    transform: rotate(45deg) translate(-100%, -100%);
-    transition: all 0.5s;
-}
 
-.btn-primary:hover::before {
-    transform: rotate(45deg) translate(0, 0);
-}
 
 .btn-primary:hover {
     background: linear-gradient(45deg, #ff4d6d, #ff2a4a);
@@ -168,3 +154,5 @@
         padding: 1rem; /* mobilde kenar boşluğu azalt */
     }
 }
+
+
