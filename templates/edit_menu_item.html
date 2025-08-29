@@ -3,11 +3,65 @@
 {% block title %}Menü Öğesi Düzenle{% endblock %}
 
 {% block content %}
+<style>
+
+/* Buton kapsayıcı */
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;   /* Üst boşluğu küçülttük */
+    flex-wrap: wrap;     /* Küçük ekranlarda alt alta geçebilir */
+}
+
+/* Güncelle butonu */
+.btn-update {
+    background-color: #e73939 !important;
+    border-color: #eb4040 !important;
+    color: #fff !important;
+    width: 160px;       /* Daraltılmış */
+    padding: 6px 0;     /* Yüksekliği küçültüldü */
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 0;          /* Alt boşluğu sıfır */
+    transition: 0.3s;
+}
+
+.btn-update:hover {
+    background-color: #a83227 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(192,57,43,0.4);
+}
+
+/* İptal butonu */
+.btn-cancel {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #fff !important;
+    width: 100px;
+    padding: 6px 0;     /* Yükseklik küçültüldü */
+    font-size: 0.95rem;
+    border-radius: 8px;
+    margin: 0;          /* Alt boşluk tamamen sıfır */
+    transition: 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+</style>
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center">Menü Öğesi Düzenle</h3>
+                <h3 class="text-center" style="color:#cd2d1c;">Menü Öğesi Düzenle</h3>
+
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('edit_menu_item', id=item.id) }}" enctype="multipart/form-data">
@@ -33,8 +87,10 @@
                         </div>
                         {% endif %}
                     </div>
-                    <button type="submit" class="btn btn-primary">Güncelle</button>
-                    <a href="{{ url_for('restaurant_detail', id=item.restaurant_id) }}" class="btn btn-secondary">İptal</a>
+                    <div class="form-buttons">
+                    <button type="submit" class="btn  btn-update">Güncelle</button>
+                    <a href="{{ url_for('restaurant_detail', id=item.restaurant_id) }}" class="btn btn-secondary btn-cancel">İptal</a>
+                    </div>
                 </form>
             </div>
         </div>
